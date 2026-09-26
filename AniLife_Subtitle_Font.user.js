@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         AniLife Subtitle Font
 // @namespace    local.anilife.subtitle.font
-// @version      1.3
-// @description  Force a visible black outline and raise AniLife Artplayer subtitles slightly
+// @version      1.4
+// @description  Force a visible black outline and raise AniLife Artplayer subtitles
 // @match        https://anilife01.tv/*
 // @run-at       document-start
 // @grant        none
@@ -37,7 +37,7 @@
         el.style.setProperty('text-shadow', SHADOW, 'important');
 
         if (el.classList && el.classList.contains('art-subtitle')) {
-            el.style.setProperty('bottom', '8%', 'important');
+            el.style.setProperty('transform', 'translateY(-32px)', 'important');
         }
     }
 

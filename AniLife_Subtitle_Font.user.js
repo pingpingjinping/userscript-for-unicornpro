@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         AniLife Subtitle Font
 // @namespace    local.anilife.subtitle.font
-// @version      1.2
-// @description  Force a visible black outline on AniLife Artplayer subtitles
+// @version      1.3
+// @description  Force a visible black outline and raise AniLife Artplayer subtitles slightly
 // @match        https://anilife01.tv/*
 // @run-at       document-start
 // @grant        none
@@ -31,12 +31,14 @@
             'important'
         );
         el.style.setProperty('font-weight', '600', 'important');
-
-        // Force outline directly on the rendered subtitle element.
         el.style.setProperty('-webkit-text-stroke-width', '2px', 'important');
         el.style.setProperty('-webkit-text-stroke-color', 'rgba(0,0,0,.98)', 'important');
         el.style.setProperty('paint-order', 'stroke fill', 'important');
         el.style.setProperty('text-shadow', SHADOW, 'important');
+
+        if (el.classList && el.classList.contains('art-subtitle')) {
+            el.style.setProperty('bottom', '8%', 'important');
+        }
     }
 
     function apply() {
@@ -46,9 +48,6 @@
 
     function start() {
         apply();
-
-        // Artplayer may recreate or overwrite subtitle nodes/styles.
-        // Re-apply lightly so the override survives player updates.
         setInterval(apply, 500);
     }
 
